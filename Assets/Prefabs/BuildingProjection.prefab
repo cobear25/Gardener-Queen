@@ -95,6 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasWorker: 0
   available: 0
+  buildingPrefab: {fileID: 1375800187826869485, guid: 59382bf1baaa741ccbe656fb37388f54,
+    type: 3}
 --- !u!61 &5654186704853643894
 BoxCollider2D:
   m_ObjectHideFlags: 0

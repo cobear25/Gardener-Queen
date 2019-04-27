@@ -11,6 +11,7 @@ public class Worker : MonoBehaviour
     private bool dirRight = true;
     public float speed = 2.0f;
     public WorkerType workerType = WorkerType.Heart;
+    public Building building;
 
     private BuildingProjection foundProjection;
 
@@ -20,6 +21,12 @@ public class Worker : MonoBehaviour
         int randomType = Random.Range(0, 3);
         workerType = (WorkerType)randomType;
         setColor();
+        if (available == false)
+        {
+            Color inactiveColor = GetComponent<SpriteRenderer>().color;
+            inactiveColor.a = 0.5f;
+            GetComponent<SpriteRenderer>().color = inactiveColor;
+        }
     }
 
     void setColor()
@@ -43,6 +50,9 @@ public class Worker : MonoBehaviour
     {
         if (available == true)
         {
+            Color activeColor = GetComponent<SpriteRenderer>().color;
+            activeColor.a = 1.0f;
+            GetComponent<SpriteRenderer>().color = activeColor;
             if (working == false)
             {
                 if (dirRight)
@@ -74,10 +84,25 @@ public class Worker : MonoBehaviour
                 if (Mathf.Abs(transform.position.x - foundProjection.transform.position.x) < 0.1f)
                 {
                     foundProjection.StartBuilding(workerType);
-                    gameController.workers.Remove(this);
-                    gameController.UpdateUI();
+                //gameController.workers.Remove(this);
+                    //gameController.UpdateUI();
                     Destroy(gameObject);
                 }
+            }
+        } else
+        {
+            if (transform.localScale.x < 1)
+            {
+                transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.05f;
+            }
+            else
+            {
+                Color activeColor = GetComponent<SpriteRenderer>().color;
+                activeColor.a = 1.0f;
+                GetComponent<SpriteRenderer>().color = activeColor;
+                available = true;
+                GetComponent<Rigidbody2D>().gravityScale = 2;
+                building.SetType(WorkerType.Nursery);
             }
         }
     }

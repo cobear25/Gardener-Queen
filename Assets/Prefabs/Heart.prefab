@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7040171426910739677}
   m_Layer: 9
   m_Name: Heart
-  m_TagString: Untagged
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   available: 0
   clicked: 0
+  building: {fileID: 0}

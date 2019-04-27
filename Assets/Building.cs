@@ -5,6 +5,8 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public Heart heartPrefab;
+    public Worker workerPrefab;
+    public GameObject turretPrefab;
 
     public WorkerType workerType = WorkerType.Heart;
     // Start is called before the first frame update
@@ -28,13 +30,19 @@ public class Building : MonoBehaviour
         {
             case WorkerType.Heart:
                 Heart heart = Instantiate(heartPrefab);
-                heart.transform.position = transform.position;
+                heart.building = this;
+                heart.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
                 spriteRenderer.color = Color.red;
                 break;
             case WorkerType.Defense:
                 spriteRenderer.color = Color.blue;
                 break;
             case WorkerType.Nursery:
+                Worker worker = Instantiate(workerPrefab);
+                worker.GetComponent<Rigidbody2D>().gravityScale = 0;
+                worker.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                worker.building = this;
+                worker.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
                 spriteRenderer.color = Color.green;
                 break;
         }

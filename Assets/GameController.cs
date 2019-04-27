@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     public bool isBuilding = true;
 
     public Worker workerPrefab;
-    public List<Worker> workers;
+    //public List<Worker> workers;
     public Text lifeText;
     public Text workerText;
     public GameObject gameOverPanel;
@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        workers = new List<Worker> { };
+        //workers = new List<Worker> { };
         gameOverPanel.gameObject.SetActive(false);
     }
 
@@ -59,13 +59,14 @@ public class GameController : MonoBehaviour {
 
                 if (hit.collider != null)
                 {
-                    if (hit.collider.gameObject.name == "Heart")
+                    if (hit.collider.gameObject.tag == "Heart")
                     {
                         GameObject heart = hit.collider.gameObject;
                         if (heart.GetComponent<Heart>().available == true)
                         {
                             heart.GetComponent<Heart>().clicked = true;
                             heart.GetComponent<Heart>().available = false;
+                            heart.GetComponent<Heart>().building.SetType(WorkerType.Heart);
                             Invoke("UpLife", 0.5f);
                             Destroy(heart, 0.5f);
                         }
@@ -84,7 +85,7 @@ public class GameController : MonoBehaviour {
     public void UpdateUI()
     {
         lifeText.text = "LIFE: " + life;
-        workerText.text = "WORKERS: " + workers.Count;
+        //workerText.text = "WORKERS: " + workers.Count;
     }
 
     public void AddWorker()
@@ -95,7 +96,7 @@ public class GameController : MonoBehaviour {
             Worker worker = Instantiate(workerPrefab);
             worker.gameController = this;
             worker.available = true;
-            workers.Add(worker);
+            //workers.Add(worker);
             worker.transform.position = new Vector2(0, 3);
             UpdateUI();
         }
