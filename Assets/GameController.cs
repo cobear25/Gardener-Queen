@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     public bool isDeleting = false;
 
     public Worker workerPrefab;
+    public Enemy enemyPrefab;
     //public List<Worker> workers;
     public Text lifeText;
     public Text workerText;
@@ -19,7 +20,10 @@ public class GameController : MonoBehaviour {
     private GameObject buildingProjection;
 
     public bool gameOver = false;
-    // Start is called before the first frame update
+
+    private float timeSinceEnemyChance = 0.0f;
+    public float enemyFrequency = 5.0f;
+
     void Start()
     {
         //workers = new List<Worker> { };
@@ -93,6 +97,27 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
+        if (gameOver == false)
+        {
+            timeSinceEnemyChance += Time.deltaTime;
+            if (timeSinceEnemyChance >= enemyFrequency)
+            {
+                timeSinceEnemyChance = 0;
+                int rand = Random.Range(0, 3);
+                if (rand == 0)
+                {
+                    Enemy enemy = Instantiate(enemyPrefab);
+                    enemy.transform.position = new Vector2(10, -2.5f);
+                    enemy.gameController = this;
+                }
+                else if (rand == 1)
+                {
+                    Enemy enemy = Instantiate(enemyPrefab);
+                    enemy.transform.position = new Vector2(-10, -2.5f);
+                    enemy.gameController = this;
+                }
+            }
+        }
     }
 
     void UpLife()
@@ -102,6 +127,12 @@ public class GameController : MonoBehaviour {
             life += 1;
             UpdateUI();
         }
+    }
+
+    public void HitByEnemy()
+    {
+        life -= 1;
+        UpdateUI();
     }
 
     public void UpdateUI()

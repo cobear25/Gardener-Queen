@@ -70,10 +70,7 @@ public class Worker : MonoBehaviour
                         GetComponent<Rigidbody2D>().AddForce(Vector3.right * -20);
                     }
                 }
-                //var translation = Input.GetAxis("Horizontal") * speed;
-                ////Debug.Log("thing: " + translation);
-                //GetComponent<Rigidbody2D>().AddForce(Vector3.right * translation);
-
+                // check if a building projection is nearby
                 Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2);
                 if (hitColliders.Length > 0)
                 {
@@ -93,13 +90,12 @@ public class Worker : MonoBehaviour
                 }
             } else
             {
+                // Hop to projected building, start building, and destroy self
                 Vector2 goToPoint = new Vector2(foundProjection.transform.position.x, foundProjection.transform.position.y + 1);
                 transform.position = Vector2.MoveTowards(transform.position, goToPoint, 10 * Time.deltaTime);
                 if (Mathf.Abs(transform.position.x - foundProjection.transform.position.x) < 0.1f)
                 {
                     foundProjection.StartBuilding(workerType);
-                //gameController.workers.Remove(this);
-                    //gameController.UpdateUI();
                     Destroy(gameObject);
                 }
             }

@@ -2335,12 +2335,15 @@ MonoBehaviour:
   isDeleting: 0
   workerPrefab: {fileID: 6963737716304222233, guid: 55a92f398e4e34c1b85f4f8978824e24,
     type: 3}
+  enemyPrefab: {fileID: 3963568558880098929, guid: 5219edd748e3b46f9baa6883f7e82fd4,
+    type: 3}
   lifeText: {fileID: 406058435}
   workerText: {fileID: 622282582}
   gameOverPanel: {fileID: 139134995}
   buildingProjectionPrefab: {fileID: 3397312875837436395, guid: 4265b138ff8314277950b6bf21e5abb8,
     type: 3}
   gameOver: 0
+  enemyFrequency: 5
 --- !u!4 &2089700214
 Transform:
   m_ObjectHideFlags: 0
