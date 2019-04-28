@@ -57,10 +57,22 @@ public class Worker : MonoBehaviour
             GetComponent<SpriteRenderer>().color = activeColor;
             if (working == false)
             {
-                if (dirRight)
-                    transform.Translate(Vector2.right * speed * Time.deltaTime);
-                else
-                    transform.Translate(-Vector2.right * speed * Time.deltaTime);
+                if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) < 2)
+                {
+                    if (dirRight)
+                    {
+                        GetComponent<SpriteRenderer>().flipX = false;
+                        GetComponent<Rigidbody2D>().AddForce(Vector3.right * 20);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().flipX = true;
+                        GetComponent<Rigidbody2D>().AddForce(Vector3.right * -20);
+                    }
+                }
+                //var translation = Input.GetAxis("Horizontal") * speed;
+                ////Debug.Log("thing: " + translation);
+                //GetComponent<Rigidbody2D>().AddForce(Vector3.right * translation);
 
                 Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2);
                 if (hitColliders.Length > 0)
@@ -93,9 +105,9 @@ public class Worker : MonoBehaviour
             }
         } else
         {
-            if (transform.localScale.x < 1)
+            if (transform.localScale.x < 3)
             {
-                transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.05f;
+                transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.1f;
             }
             else
             {

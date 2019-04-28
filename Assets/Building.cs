@@ -40,7 +40,7 @@ public class Building : MonoBehaviour
             case WorkerType.Nursery:
                 Worker worker = Instantiate(workerPrefab);
                 worker.GetComponent<Rigidbody2D>().gravityScale = 0;
-                worker.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                worker.transform.localScale = new Vector3(1, 1, 1);
                 worker.building = this;
                 worker.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
                 spriteRenderer.color = Color.green;

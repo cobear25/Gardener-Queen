@@ -97,8 +97,11 @@ public class GameController : MonoBehaviour {
 
     void UpLife()
     {
-        life += 1;
-        UpdateUI();
+        if (life < 10)
+        {
+            life += 1;
+            UpdateUI();
+        }
     }
 
     public void UpdateUI()

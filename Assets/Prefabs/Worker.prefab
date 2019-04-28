@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6963737716304222233}
   - component: {fileID: 6963737716304222234}
   - component: {fileID: 6963737716304222235}
-  - component: {fileID: 6963737716304222239}
+  - component: {fileID: 4157988940981989807}
   m_Layer: 8
   m_Name: Worker
   m_TagString: Worker
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6963737716304222212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.5950727, y: -1.4957541, z: -0.13498996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   speed: 2
   workerType: 0
   building: {fileID: 0}
+  deleteMode: 0
 --- !u!212 &6963737716304222234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8c3cc43b848814241b89ff13125645fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01c1cf03599bc4dec9fe995db38f2401, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,9 +121,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!61 &6963737716304222239
-BoxCollider2D:
+  m_Constraints: 0
+--- !u!58 &4157988940981989807
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,15 +136,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.16
