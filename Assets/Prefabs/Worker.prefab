@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6963737716304222239}
   m_Layer: 8
   m_Name: Worker
-  m_TagString: Untagged
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -51,6 +51,7 @@ MonoBehaviour:
   available: 0
   speed: 2
   workerType: 0
+  building: {fileID: 0}
 --- !u!212 &6963737716304222234
 SpriteRenderer:
   m_ObjectHideFlags: 0

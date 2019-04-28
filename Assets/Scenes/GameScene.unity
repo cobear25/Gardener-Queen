@@ -873,7 +873,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560422457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089700213}
+        m_MethodName: EnterDeleteMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &560422457
@@ -2065,9 +2076,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 10
   isBuilding: 1
+  isDeleting: 0
   workerPrefab: {fileID: 6963737716304222233, guid: 55a92f398e4e34c1b85f4f8978824e24,
     type: 3}
-  workers: []
   lifeText: {fileID: 406058435}
   workerText: {fileID: 622282582}
   gameOverPanel: {fileID: 139134995}
@@ -2088,77 +2099,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &6521224349612639796
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6521224348804508665, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_Name
-      value: Heart
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.466765
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.5812612
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521224348804508667, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040171426910739677, guid: 3e93c6863761941049da9f49f9218d27,
-        type: 3}
-      propertyPath: available
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3e93c6863761941049da9f49f9218d27, type: 3}

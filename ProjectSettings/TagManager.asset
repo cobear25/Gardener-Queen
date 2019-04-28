@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BuildingProjection
   - Heart
+  - Worker
   layers:
   - Default
   - TransparentFX

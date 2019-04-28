@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum WorkerType { Heart = 0, Defense, Nursery };
+
 public class Worker : MonoBehaviour
 {
     public GameController gameController;
@@ -12,6 +13,7 @@ public class Worker : MonoBehaviour
     public float speed = 2.0f;
     public WorkerType workerType = WorkerType.Heart;
     public Building building;
+    public bool deleteMode = false;
 
     private BuildingProjection foundProjection;
 
@@ -20,7 +22,7 @@ public class Worker : MonoBehaviour
         dirRight = Random.Range(0, 2) == 0;
         int randomType = Random.Range(0, 3);
         workerType = (WorkerType)randomType;
-        setColor();
+        SetColor();
         if (available == false)
         {
             Color inactiveColor = GetComponent<SpriteRenderer>().color;
@@ -29,12 +31,12 @@ public class Worker : MonoBehaviour
         }
     }
 
-    void setColor()
+    public void SetColor()
     {
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         switch (workerType) {
             case WorkerType.Heart:
-                renderer.color = Color.red;
+                renderer.color = Color.magenta;
                 break;
             case WorkerType.Defense:
                 renderer.color = Color.blue;
@@ -105,10 +107,33 @@ public class Worker : MonoBehaviour
                 building.SetType(WorkerType.Nursery);
             }
         }
+        if (deleteMode)
+        {
+            GetComponent<SpriteRenderer>().color = Color.Lerp(Worker.ColorForWorkerType(workerType), Color.red, Mathf.PingPong(Time.time, 1));
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Worker.ColorForWorkerType(workerType);
+        }
     }
 
     private void OnBecameInvisible()
     {
         dirRight = !dirRight;
+    }
+
+    public static Color ColorForWorkerType(WorkerType workerType)
+    {
+        switch (workerType)
+        {
+            case WorkerType.Heart:
+                return Color.magenta;
+            case WorkerType.Defense:
+                return Color.blue;
+            case WorkerType.Nursery:
+                return Color.green;
+            default:
+                return Color.white;
+        }
     }
 }

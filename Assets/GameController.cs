@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public int life = 10;
-    public bool isBuilding = true;
+    public bool isBuilding = false;
+    public bool isDeleting = false;
 
     public Worker workerPrefab;
     //public List<Worker> workers;
@@ -51,8 +52,26 @@ public class GameController : MonoBehaviour {
                 EnterBuildMode();
                 UpdateUI();
             }
-        } else
+        } else if (isDeleting == true)
         {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                if (hit.collider != null)
+                {
+                    if (hit.collider.gameObject.tag == "Worker")
+                    {
+                        Worker worker = hit.collider.gameObject.GetComponent<Worker>();
+                        if (worker.available == true && worker.working == false)
+                        {
+                            Destroy(worker.gameObject);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        else {
             if (Input.GetButtonDown("Fire1"))
             {
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -115,6 +134,20 @@ public class GameController : MonoBehaviour {
             }
             isBuilding = !isBuilding;
         }
+    }
+
+    public void EnterDeleteMode()
+    {
+        isDeleting = !isDeleting;
+        GameObject[] workers = GameObject.FindGameObjectsWithTag("Worker");
+        foreach (GameObject worker in workers)
+        {
+            if (worker.GetComponent<Worker>() != null)
+            {
+                worker.GetComponent<Worker>().deleteMode = isDeleting;
+            }
+        }
+
     }
 
     public void QuitGame()

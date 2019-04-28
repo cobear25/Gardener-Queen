@@ -32,7 +32,7 @@ public class Building : MonoBehaviour
                 Heart heart = Instantiate(heartPrefab);
                 heart.building = this;
                 heart.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
-                spriteRenderer.color = Color.red;
+                spriteRenderer.color = Color.magenta;
                 break;
             case WorkerType.Defense:
                 spriteRenderer.color = Color.blue;
