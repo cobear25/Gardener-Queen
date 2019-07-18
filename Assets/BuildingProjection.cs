@@ -7,6 +7,7 @@ public class BuildingProjection : MonoBehaviour
     public bool hasWorker = false;
     public bool available = false;
     public Building buildingPrefab;
+    public GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class BuildingProjection : MonoBehaviour
         Building building = Instantiate(buildingPrefab);
         building.transform.position = transform.position;
         building.SetType(workerType);
+        gameController.BuildingBuilt();
         Destroy(gameObject);
     }
 }

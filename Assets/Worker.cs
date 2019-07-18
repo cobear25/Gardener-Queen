@@ -39,10 +39,10 @@ public class Worker : MonoBehaviour
                 renderer.color = Color.magenta;
                 break;
             case WorkerType.Defense:
-                renderer.color = Color.blue;
+                renderer.color = Color.cyan;
                 break;
             case WorkerType.Nursery:
-                renderer.color = Color.green;
+                renderer.color = new Color(0.88f, 0.53f, 0);
                 break;
         }
     }
@@ -101,7 +101,7 @@ public class Worker : MonoBehaviour
             }
         } else
         {
-            if (transform.localScale.x < 3)
+            if (transform.localScale.x < 2.5f)
             {
                 transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * 0.1f;
             }
@@ -137,9 +137,9 @@ public class Worker : MonoBehaviour
             case WorkerType.Heart:
                 return Color.magenta;
             case WorkerType.Defense:
-                return Color.blue;
+                return Color.cyan;
             case WorkerType.Nursery:
-                return Color.green;
+                return new Color(0.88f, 0.53f, 0);
             default:
                 return Color.white;
         }

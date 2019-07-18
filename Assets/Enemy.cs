@@ -8,16 +8,17 @@ public class Enemy : MonoBehaviour
     public int health = 3;
 
     private float timeSinceShot = 0.0f;
-    public float shootFrequency = 2.3f;
+    float shootFrequency = 4.3f;
     public GameController gameController;
 
     public EnemyBullet bulletPrefab;
+    public AudioClip shootSound;
 
     float destinationX;
     // Start is called before the first frame update
     void Start()
     {
-        destinationX = Random.Range(-5.0f, 5.0f); 
+        destinationX = Random.Range(-8.0f, 8.0f); 
     }
 
     // Update is called once per frame
@@ -25,8 +26,9 @@ public class Enemy : MonoBehaviour
     {
         if (shooting == false)
         {
-            Vector2 goToPoint = new Vector2(destinationX, -1);
-            transform.position = Vector2.MoveTowards(transform.position, goToPoint, 3 * Time.deltaTime);
+            // Go to a random spot on the screen
+            Vector3 goToPoint = new Vector3(destinationX, -1, -2);
+            transform.position = Vector3.MoveTowards(transform.position, goToPoint, 3 * Time.deltaTime);
             if (Mathf.Abs(transform.position.x - destinationX) <= 0.2)
             {
                 shooting = true;
@@ -45,6 +47,11 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
+        if (gameController.gameOver == true) 
+        {
+            return;
+        }
+        GetComponent<AudioSource>().PlayOneShot(shootSound);
         EnemyBullet bullet = Instantiate(bulletPrefab);
         bullet.transform.position = transform.position;
         bullet.gameController = gameController;
@@ -52,10 +59,22 @@ public class Enemy : MonoBehaviour
 
     public void Hit()
     {
+        Invoke("RealHit", 0.2f);
+    }
+    void RealHit()
+    {
         health -= 1;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        Invoke("ColorBack", 0.2f);
         if (health <= 0)
         {
+            gameController.EnemyDestroyed();
             Destroy(gameObject);
         }
+    }
+
+    void ColorBack()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

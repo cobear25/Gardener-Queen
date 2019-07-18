@@ -8,6 +8,7 @@ TagManager:
   - Heart
   - Worker
   - Enemy
+  - music
   layers:
   - Default
   - TransparentFX

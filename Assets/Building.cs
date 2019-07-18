@@ -6,7 +6,7 @@ public class Building : MonoBehaviour
 {
     public Heart heartPrefab;
     public Worker workerPrefab;
-    public GameObject turretPrefab;
+    public Turret turretPrefab;
 
     public WorkerType workerType = WorkerType.Heart;
     // Start is called before the first frame update
@@ -31,19 +31,21 @@ public class Building : MonoBehaviour
             case WorkerType.Heart:
                 Heart heart = Instantiate(heartPrefab);
                 heart.building = this;
-                heart.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
+                heart.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
                 spriteRenderer.color = Color.magenta;
                 break;
             case WorkerType.Defense:
-                spriteRenderer.color = Color.blue;
+                spriteRenderer.color = Color.cyan;
+                Turret turret = Instantiate(turretPrefab);
+                turret.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
                 break;
             case WorkerType.Nursery:
                 Worker worker = Instantiate(workerPrefab);
                 worker.GetComponent<Rigidbody2D>().gravityScale = 0;
                 worker.transform.localScale = new Vector3(1, 1, 1);
                 worker.building = this;
-                worker.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
-                spriteRenderer.color = Color.green;
+                worker.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
+                spriteRenderer.color = new Color(0.88f, 0.53f, 0);
                 break;
         }
     }
